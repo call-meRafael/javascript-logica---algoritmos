@@ -11,11 +11,17 @@ const clubes = [];
 frm.addEventListener("submit", (e) => {
   e.preventDefault();
   const clubName = getClub.value;
-  clubes.push(clubName);
 
-  
+  if (clubName.length < 4) {
+    msgAlert.textContent =
+      "Clube inválido. Nomes de clubes devem conter no mínimo 4 caracteres!";
+  }
 
-  
+  clubes.includes(clubName)
+    ? (msgAlert.textContent = `O clube "${clubName}" já existe!`)
+    : clubes.push(clubName);
+
+  getClub.value = "";
 });
 
 console.log(clubes);
