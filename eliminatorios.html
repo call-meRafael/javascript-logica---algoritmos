@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 01</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: cornflowerblue;
+            display: flex;
+            max-width: 90rem;
+            align-content: center;
+            justify-content: center;
+            min-height: 100vh;
+            
+            
+        }
+
+        main {
+            place-content: center;
+            display: flex;
+            max-width: 100%;
+            flex-flow: column;
+            gap: 1rem;
+            justify-content: center;
+            
+            
+        }
+
+        h1 {
+            color: antiquewhite;
+            filter: drop-shadow(1px 1px 2px black);
+            font-size: 3rem;
+        }
+
+        .clube-text {
+            display: flex;
+            gap: .2rem;
+            font-size: 1.5rem;
+
+            & #inClube {
+                font-size: 1.2rem;
+            }
+
+            & #btnAdd {
+                padding-block: 4px;
+                padding-inline: 12px;
+                border-radius: 8px;
+                font-size: 1.1rem;
+            }
+        }
+
+        .btn {
+            padding-block: 4px;
+            padding-inline: 12px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+
+            &:hover, &:focus, &:active {
+                cursor: pointer;
+                background-color: lightgreen;
+            }
+        }
+
+        .content-separator {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        pre {
+            font-size: 1.2rem;
+            color: crimson;
+
+            transition: all .2s ease-in-out;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <main>
+
+        <h1>Jogos Eliminatórios</h1>
+        <form action="">
+            <label for="inClube" class="clube-text">Clube:
+                <input type="text" name="inClube" id="inClube" autofocus autocomplete="off" placeholder="Nome do Clube"> <input type="submit" value="Adicionar" id="btnAdd" class="btn">
+            </label>
+        </form>
+
+        <section class="content-separator">
+
+            <div class="clubes-lista">
+                <input type="button" value="Listar Clubes" id="btnListar" class="btn">
+                <p class="listagem--clubes">
+                    <ul class="inserir-clubes">
+
+                    </ul>
+
+                </p>
+            </div>
+    
+            <div class="clubes-tabela">
+                <input type="button" value="Montar Tabela de Jogos" id="btnMontar" class="btn">
+            </div>
+        </section>
+        <pre></pre>
+        
+    </main>
+
+
+
+    <script src="eliminatorios.js"></script>
+</body>
+</html>

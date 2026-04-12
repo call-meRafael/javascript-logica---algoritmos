@@ -13,6 +13,11 @@ frm.addEventListener('submit', (e) => {
     let lista = '';
 
     const atualizarPacientes = pacientes.map(({ nome, lista }, i) => {
-        
-    })
+        return ` ${nome} - ${lista[i]}`
+    });
+
+    respNome.innerHTML = nome;
+    respLista.innerHTML = lista;
+    console.log(atualizarPacientes);
+
 })
