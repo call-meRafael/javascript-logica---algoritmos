@@ -82,6 +82,19 @@
             transition: all .2s ease-in-out;
         }
 
+        span {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: red;
+            filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.178));
+        }
+
+        li {
+            margin-top: .5rem;
+            list-style: none;
+            list-style-position: inside;
+        }
+
         
     </style>
 </head>
@@ -109,9 +122,13 @@
     
             <div class="clubes-tabela">
                 <input type="button" value="Montar Tabela de Jogos" id="btnMontar" class="btn">
+                <ul class="tabela-final">
+
+                </ul>
             </div>
         </section>
         <pre></pre>
+        <span></span>
         
     </main>
 

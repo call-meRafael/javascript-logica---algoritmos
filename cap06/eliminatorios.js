@@ -2,36 +2,64 @@
 
 const frm = document.querySelector("form");
 const getClub = document.querySelector("#inClube");
-const btnAdd = document.querySelector("#btnAdd");
 const msgAlert = document.querySelector("pre");
+const msgAlert2 = document.querySelector("span");
+const listBtn = document.querySelector("#btnListar");
+const clubsInserted = document.querySelector(".inserir-clubes");
+const table = document.querySelector(".tabela-final");
 
-const clubes = [];
 
-function handleClick(e) {
-  e.preventDefault();
-  console.log("click", e.target);
+let clubes = [];
+
+// Função principal de ação principal do formulário, responsavel por validar o nome do clube, verificar se já foi adicionado um clube com o mesmo nome e, por fim, adicionar o nome do clube ao array de clubes.
+const handleMainAction = (action) => {
+  action.preventDefault();
+
+  // Remove os espaços em branco do início e do fim do campo de entrada, caso existam, e formata o nome do clube para que a primeira letra de cada palavra seja maiúscula.
+  const textValue = getClub.value
+    .trim()
+    .toLowerCase()
+    .split(" ")
+    .map((char) => char.charAt(0).toUpperCase() + char.slice(1))
+    .join(" ");
+  // Verifica se o nome do clube possui no mínimo 4 caracteres.
+  if (textValue.length < 4)
+    return (msgAlert.innerHTML = `<p>O nome do clube deve ter no mínimo 4 caracteres!</p>`);
+
+  // Verifica se o nome do clube inserido pelo usuário já foi adicionado ao arrays de clubes.
+  clubes.includes(textValue)
+    ? (msgAlert2.innerHTML = `<p>O clube "${textValue}" já foi adicionado, tente outro clube!</p>`)
+    : clubes.push(textValue);
+
+  action.target.reset();
+  msgAlert.innerHTML = clubes;
+};
+
+// Evento para o campo de entrada do mome do clube no formulário.
+frm.addEventListener("submit", handleMainAction);
+
+// Função encarregada de gerar a listagem de clubes inseridos no array de clubes.
+const handleClubList = (clubs) => {
+  listBtn.addEventListener("click", () => {
+    clubsInserted.innerHTML = clubs.map((club, i) => `<li>Clube número ${i + 1}: ${club}</li>`).join("");
+  });
+  return clubs;
+};
+
+
+// Função encarregada de gerar a tabela de jogos eliminatórios.
+const handleTable = (clubs) => {
+  const tableAction = (list) => {
+    table.innerHTML = list.map((club) => {
+      return `<li>${club[0]} x ${club[club.length - 1]}</li>`;
+    })
+  }
+  return tableAction(clubes);
+
 }
 
-// Crie o primeiro eventListener relativo ao formulário ou ao botão Add.
-frm.addEventListener("submit", handleClick => {
-  handleClick.preventDefault();
-  const clubName = getClub.value;
-  if (!clubes.includes(clubName)) {
-
-    return clubName.length < 4 || clubName.length > 20
-      ? (msgAlert.innerHTML = `<p>O nome do clube deve conter entre 4 e 20 caracteres!</p>`)
-      : clubes.push(clubName)
-    ;
-  } else {
-
-    msgAlert.innerHTML = `<p>O clube "${clubName}" já está cadastrado!</p>`;
-  }
-  
-  
-
-  getClub.value = '';
-  const lista = clubes.map((clube, i) => `<li>Clube na posição ${i + 1}: ${clube}</li>`).join('');
-  msgAlert.innerHTML = `<ul>${lista}</ul>`;
-});
+btnMontar.addEventListener('click', handleTable(clubes));
 
 console.log(clubes);
+console.log(handleClubList(clubes));
+console.log(handleTable(clubes));
