@@ -39,8 +39,33 @@ const handleAdd = (action) => {
 
 frm.addEventListener("submit", handleAdd);
 
-const handleVerify = (check) => {
-  check.preventDefault(); 
+const handleVerify = () => {
+  
+
+  if (numeros.length < 2) {
+    errorMsg1.innerHTML = `<p>Adicione pelo menos 2 números!</p>`;
+    errorMsg1.style.color = "orange";
+    return;
+  }
+
+  const estaEmOrdem = numeros.every((numeroAtual, indice) => {
+    if (indice === 0) return true;
+    return Number(numeroAtual) >= Number(numeros[indice - 1]);
+  });
+
+  if (estaEmOrdem) {
+    errorMsg1.style.color = "limegreen";
+    errorMsg1.innerHTML = `
+      <p>Os números ESTÃO em ordem crescente!</p>
+      <p>[${numeros.join(" < ")}]</p>
+    `;
+  } else {
+    errorMsg1.style.color = "red";
+    errorMsg1.innerHTML = `
+      <p>Os números NÃO estão em ordem crescente!</p>
+      <p>Verifique os números!</p>
+    `;
+  }
 };
 
 verifyBtn.addEventListener('click', handleVerify);
