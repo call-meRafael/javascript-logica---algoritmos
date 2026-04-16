@@ -22,6 +22,8 @@ const formatNome = (nome) => {
   return candidato;
 };
 
+
+
 // Função responsável por colher os dados do formulário e adicionar o candidato à lista.
 const getData = (event) => {
   event.preventDefault();
@@ -29,6 +31,8 @@ const getData = (event) => {
   const nome = getName.value;
   const usuario = formatNome(nome);
   const acertos = Number(getNumbr.value);
+
+  
   
   
   if (usuario.length < 3 || usuario.length > 15) {
@@ -39,6 +43,12 @@ const getData = (event) => {
   if (getNumbr.value < 0) {
     return alert('O número de acertos não pode ser negativo!');
   }
+
+
+  const candidato = aprovados.find((candidato) => candidato.candidato === usuario);
+  // Verifica se há duplicidade de candidatos.
+  if (candidato) return alert('Candidato já inserido!');
+  
   
   aprovados.push({ candidato: usuario, acertos: acertos });
   console.log(aprovados);
