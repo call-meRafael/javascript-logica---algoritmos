@@ -8,8 +8,15 @@ const frm = document.querySelector("form");
 const getName = document.querySelector("#inCandidato");
 const getNumbr = document.querySelector("#inAcertos");
 const invalidState = document.querySelector('.invalid-state');
+const listAllBtn = document.querySelector('#list-btn');
+const closeBtn = document.querySelector('#close-btn');
+const userTable = document.querySelector('.lista-total');
+const listFormated = document.querySelector('.list-box');
 
 const aprovados = [];
+const listaCandidatos = [];
+const notaParaAprovacao = 300;
+const notaMaxima = 400;
 
 const formatNome = (nome) => {
   const candidato = nome
@@ -35,13 +42,15 @@ const getData = (event) => {
   
   
   
-  if (usuario.length < 3 || usuario.length > 15) {
+  if (usuario.length < 3 || usuario.length > 25) {
     event.target.reset();// Segundo reset para limpar entrada pós erro.
-    return alert('O nome do candidato deve conter entre 3 e 15 caracteres!');
+    return alert('O nome do candidato deve conter entre 3 e 25 caracteres!');
   }
   
   if (getNumbr.value < 0) {
     return alert('O número de acertos não pode ser negativo!');
+  } else if (getNumbr.value > notaMaxima) {
+    return alert('O número de acertos não pode ser maior que 400!');
   }
 
 
@@ -50,8 +59,8 @@ const getData = (event) => {
   if (candidato) return alert('Candidato já inserido!');
   
   
-  aprovados.push({ candidato: usuario, acertos: acertos });
-  console.log(aprovados);
+  listaCandidatos.push({ candidato: usuario, acertos: acertos });
+  console.log(listaCandidatos);
 
   event.target.reset(); // Limpa o formulário.
 };
@@ -70,6 +79,29 @@ getName.addEventListener('input', () => {
     invalidState.classList.add('no-display');
   }
 })
+
+const formatListaCandidatos = (candidatos) => {
+  const lista = candidatos.map((user, i) => `<li>Candidato ${i + 1}: <em>${user.candidato}</em> - <strong>${user.acertos}</strong> acertos</li>`).join('');
+  userTable.innerHTML = lista;
+}
+
+// Ouvinte do evento de clicar no botão de listar todos.
+listAllBtn.addEventListener('click', () => {
+  // Verifica se houve inserção de dados.
+  if (listaCandidatos.length < 1) {
+    return alert('Não há candidatos para listar!');
+  }
+  formatListaCandidatos(listaCandidatos);
+  
+  listFormated.classList.remove('no-display');
+  
+})
+
+// ouvinte do evento de clicar no botão fechar.
+closeBtn.addEventListener('click', () => {
+  listFormated.classList.add('no-display');
+})
+
 
 
 

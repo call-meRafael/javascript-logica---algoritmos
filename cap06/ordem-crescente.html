@@ -12,6 +12,7 @@
       }
 
       body {
+        max-width: 90rem;
         background-color: cornflowerblue;
         display: grid;
         place-content: center;
@@ -40,6 +41,11 @@
         font-size: 3rem;
         color: antiquewhite;
         filter: drop-shadow(1px 1px 1px black);
+
+        @media (min-width: 375px) and (max-width: 452px) {
+          font-size: 2.2rem;
+         
+        }
       }
 
       label {
