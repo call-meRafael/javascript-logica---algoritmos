@@ -18,6 +18,7 @@ const maxGrade = document.querySelector(".nota-maxima");
 const usersAproved = document.querySelector(".aproved-list");
 const aprovedBox = document.querySelector(".aproved-box");
 
+const aprovados = [];
 const listaCandidatos = [];
 const notaParaAprovacao = 300;
 const notaMaxima = 400;
