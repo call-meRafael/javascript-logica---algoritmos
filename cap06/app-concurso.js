@@ -18,7 +18,7 @@ const maxGrade = document.querySelector(".nota-maxima");
 const usersAproved = document.querySelector(".aproved-list");
 const aprovedBox = document.querySelector(".aproved-box");
 
-const aprovados = [];
+
 const listaCandidatos = [];
 const notaParaAprovacao = 300;
 const notaMaxima = 400;
@@ -53,7 +53,7 @@ const getData = (event) => {
     return alert("O número de acertos não pode ser maior que 400!");
   }
 
-  const candidato = aprovados.find(
+  const candidato = listaCandidatos.find(
     (candidato) => candidato.candidato === usuario,
   );
   // Verifica se há duplicidade de candidatos.
