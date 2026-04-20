@@ -47,10 +47,10 @@ const getData = (event) => {
     return alert("O nome do candidato deve conter entre 3 e 25 caracteres!");
   }
 
-  if (getNumbr.value < 0) {
+  if (acertos < 0) {
     return alert("O número de acertos não pode ser negativo!");
-  } else if (getNumbr.value > notaMaxima) {
-    return alert("O número de acertos não pode ser maior que 400!");
+  } else if (acertos > notaMaxima) {
+    return alert(`O número de acertos não pode ser maior que ${notaMaxima}!`);
   }
 
   const candidato = listaCandidatos.find(
@@ -82,13 +82,12 @@ getName.addEventListener("input", () => {
 });
 
 const formatListaCandidatos = (candidatos) => {
-  const lista = candidatos
+  return candidatos
     .map(
       (user, i) =>
         `<li>Candidato ${i + 1}: <em>${user.candidato}</em> - <strong>${user.acertos}</strong> acertos</li>`,
     )
     .join("");
-  userTable.innerHTML = lista;
 };
 
 // Ouvinte do evento de clicar no botão de listar todos.
@@ -97,9 +96,9 @@ listAllBtn.addEventListener("click", () => {
   if (listaCandidatos.length < 1) {
     return alert("Não há candidatos para listar!");
   }
-  formatListaCandidatos(listaCandidatos);
-
+  
   listFormated.classList.remove("no-display");
+  userTable.innerHTML = formatListaCandidatos(listaCandidatos);
 });
 
 // ouvinte do evento de clicar no botão fechar.
