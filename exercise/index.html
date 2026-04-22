@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechFix Pro</title>
+    <link rel="stylesheet" href="styles/index.css">
+</head>
+<body>
+    <header>
+        <h1>TechFix Pro - Gestão de Manutenção</h1>
+        <div class="total-income">
+            <h2>Receita Total:
+                <span class="total-income-value">0</span>
+            </h2>
+        </div>
+    </header>
+
+    <main>
+        <section class="data-wrapper">
+            <form action="">
+                <div class="user-box">
+                    <label for="inCliente">Nome:</label>
+                    <input type="text" name="cliente" id="inCliente" required autofocus>
+                </div>
+                <div class="aparelho-box">
+                    <label for="inAparelho">Modelo do Aparelho:</label>
+                    <input type="text" name="aparelho" id="inAparelho" required>
+                </div>
+                <div class="menu">
+                    <select name="menu" id="inMenu">
+                        <option value="0">Selecione um serviço</option>
+                        <option value="1">Limpeza Básica</option>
+                        <option value="2">Limpeza Profunda</option>
+                        <option value="3">Troca de Analógico</option>
+                        <option value="4">Reparo de Placa</option>
+                        <option value="5">Calibragem de Sensor</option>
+                        <option value="6">Manutenção de Televisor</option>
+                    </select>
+                </div>
+                <input type="button" value="Fazer Pedido" class="send-btn">
+            </form>
+
+        </section>
+        <section class="view-data">
+            <div class="pending-orders">
+
+            </div>
+
+            <div class="orders-finished">
+
+            </div>
+        </section>
+    </main>
+    
+</body>
+</html>
