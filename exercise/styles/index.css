@@ -98,18 +98,102 @@ form {
         font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     }
 
+    .menu {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        & .box-order {
+            display: flex;
+            align-items: center;
+            gap: .3rem;
+
+            
+        }
+
+        & #order-checkbox {
+            display: flex;
+            align-self: flex-start;
+
+            max-width: 100px;
+            width: fit-content;
+            white-space: nowrap;
+            
+            padding-block: .5rem;
+            padding-inline: 1rem;
+            border: 2px solid #dddddd;
+            background-color: #f5f5f5;
+
+            transition: max-width .2s ease-in-out;
+        }
+    }
+
     & select {
         max-width: fit-content;
-        flex-grow: 0;
-        flex-shrink: 1;
-        flex-basis: auto;
+        flex: 1;
         width: 100%;
         padding: .5rem;
         border-radius: 8px;
-        border: none;
+        border: 2px solid #dddddd;
+        background: #ffffff;
         box-shadow: inset;
         margin-left: .9rem;
+        appearance: base-select;
+
+
+        transition: 0.4s;
+        
+
+        &:hover, &:focus {
+            background-color: #dddddd;
+        }
+
+        &:open::picker-icon {
+            transform: rotate(180deg);
+        }
+
+        &::picker-icon {
+            color: #999999;
+            transition: 0.4s rotate;
+        }
+
+        &::picker(select) {
+            appearance: base-select;
+            border: none;
+
+        }
+
+        & > option {
+            display: flex;
+            justify-content: flex-start;
+            gap: 1rem;
+
+            border: 2px solid #dddddd;
+            background: #eeeeee;
+            padding: .6rem;
+
+            transition: 0.4s;
+
+            &:first-of-type {
+                border-radius: .5rem .5rem 0 0;
+            }
+            &:last-of-type {
+                border-radius: 0 0 .5rem .5rem;
+            }
+
+            &:checked {
+                font-weight: 700;
+            }
+
+            &::checkmark {
+                order: 1;
+                margin-left: auto;
+                content: '☑️';
+            }
+        }
     }
+
+
 
     & .send-btn {
         display: flex;
@@ -120,6 +204,7 @@ form {
         padding-block: .5rem;
         padding-inline: 1rem;
         margin-left: .9rem;
+        margin-top: .5rem;
 
         font-family: monospace;
         font-size: 1.1rem;
