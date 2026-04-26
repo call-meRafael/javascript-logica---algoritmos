@@ -40,9 +40,3 @@ const formatName = (name) => {
     .map((char) => char.charAt(0).toUpperCase() + char.slice(1))
     .join(" ");
 };
-
-const handleOrders = (id) => {
-  const order = ordensDeServico.find((order) => order.id === id);
-
-  const 
-}

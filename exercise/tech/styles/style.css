@@ -1,0 +1,63 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  
+  margin-inline: auto;
+  max-width: 90rem;
+  min-height: 100vh;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  font-family: var(--ff-main);
+}
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+input, button, textarea, select {
+  font: inherit;
+}
+
+:root {
+  --prim-clr: #FFD393;
+  --secon-clr: #9C9B7A;
+  --tert-clr: #405952;
+  --quat-clr: #FF974F;
+  --quin-clr: #F54F29;
+
+  --bg-clr: #f7dfbc;
+  --ff-main: 'Manrope', sans-serif;
+  --ff-secondary: 'Poppins', sans-serif;
+}
+
+.header-wrapper {
+  background-color: var(--bg-clr);
+
+}
+
+.header-main-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.header-text {
+  display: flex;
+  flex-direction: column;
+
+  & .tech-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #F54F29;
+    filter: drop-shadow(1px 1px 1px #000);
+  }
+}
+.page-logo {
+  width: 128px;
+  height: 128px;
+}
