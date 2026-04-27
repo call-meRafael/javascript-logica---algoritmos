@@ -8,6 +8,7 @@ body {
   
   margin-inline: auto;
   max-width: 90rem;
+  padding-inline: 1rem;
   min-height: 100vh;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
@@ -36,7 +37,11 @@ input, button, textarea, select {
 }
 
 .header-wrapper {
+  display: flex;
+  width: 100%;
+  justify-content: center;
   background-color: var(--bg-clr);
+  border-bottom: #F54F29 solid 2px;
 
 }
 
@@ -47,7 +52,12 @@ input, button, textarea, select {
 }
 .header-text {
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
+  
+  width: 100%;
+  line-height: 1.2;
 
   & .tech-title {
     font-size: clamp(2rem, 5vw, 3rem);
@@ -56,8 +66,21 @@ input, button, textarea, select {
     color: #F54F29;
     filter: drop-shadow(1px 1px 1px #000);
   }
+
+  & .tech-paragraph {
+    text-transform: lowercase;
+    color: var(--tert-clr);
+    font-style: italic;
+    margin-left: 1rem;
+  }
 }
 .page-logo {
   width: 128px;
   height: 128px;
+}
+
+/* main content */
+
+.main-content {
+  background-color: var(--tert-clr);
 }
