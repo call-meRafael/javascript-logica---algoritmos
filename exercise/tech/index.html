@@ -33,7 +33,23 @@
 
     <main class="main-content">
         <section class="data-wrapper">
+            <p class="servico-consulta">Consulte o status do serviço</p>
             <form action="" id="data-getter">
+                <div class="input-container">
+                    <span class="invalid-state no-display">inválido</span>
+                    
+                    <input type="text" name="user" id="inUser" class="input-field" placeholder=" " required autofocus autocomplete="off">
+                    <label for="inUser" class="input-label">Nome e sobrenome</label>
+                </div>
+                <div class="input-container">
+                    <input type="text" name="aparelho" id="inAparelho" class="input-field" placeholder=" " required autocomplete="off">
+                    <label for="inAparelho" class="input-label">Modelo do aparelho</label>
+                </div>
+
+                <select name="servicos" id="inServicos" class="servicos-select">
+
+                </select>
+                <input type="submit" value="Fazer consulta" id="order-btn">
 
             </form>
 

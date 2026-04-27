@@ -5,6 +5,9 @@
 }
 
 body {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
   
   margin-inline: auto;
   max-width: 90rem;
@@ -31,10 +34,77 @@ input, button, textarea, select {
   --quat-clr: #FF974F;
   --quin-clr: #F54F29;
 
+  --shadow-l: inset 
+  0 1px 2px #ffffff70,
+  0 4px 6px #00000030,
+  0 6px 10px #00000015;
+
+  --shadow-s: inset 
+  0 1px 2px #ffffff30, 
+  0 1px 2px #00000030,
+  0 2px 4px #00000015;
+
   --bg-clr: #f7dfbc;
   --ff-main: 'Manrope', sans-serif;
   --ff-secondary: 'Poppins', sans-serif;
 }
+
+.options-fomater {
+  display: flex;
+  justify-content: flex-start;
+  gap: 1.1rem;
+
+  border: 2px solid var(--prim-clr);
+  padding: .6rem;
+  transition: .4s ease;
+}
+/* option style */
+option:first-of-type {
+  border-radius: .5rem .5rem 0 0;
+}
+option:last-of-type {
+  border-radius: 0 0 .5rem .5rem;
+}
+option:not(option:last-of-type) {
+  border-bottom: none;
+}
+option:nth-of-type(odd) {
+  background-color: #dddddd;
+
+}
+/* ------------------------ */
+::picker(select) {
+  border-radius: .5rem;
+}
+
+/* error-state */
+.error-state {
+  color: #dddddd;
+  background-color: crimson;
+  opacity: .5;
+
+}
+
+/* invalid-state */
+.invalid-state {
+  position: absolute;
+  top: -15px;
+  left: 75%;
+  color: crimson;
+  font-family: 'Poppins', sans-serif;
+  font-size: .7rem;
+
+  transition: .4s ease;
+}
+/* ------------------------ */
+
+/* no-display */
+.no-display {
+  display: none;
+  visibility: hidden;
+  opacity: 0;
+}
+/*-------------------*/
 
 .header-wrapper {
   display: flex;
@@ -82,5 +152,135 @@ input, button, textarea, select {
 /* main content */
 
 .main-content {
+  display: flex;
+  
   background-color: var(--tert-clr);
+  padding-block: 1rem;
+}
+
+.data-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  padding-inline: 2rem;
+  padding-block: 1rem;
+
+  & .servico-consulta {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #f5f5f5;
+    filter: drop-shadow(1px 1px 1px #33333331);
+  }
+  
+  & #data-getter {
+    display: flex;
+    flex-flow: column wrap;
+    gap: 2rem;
+    
+    max-width: 320px;
+    background-color: var(--bg-clr);
+    border-radius: .5rem;
+    box-shadow: var(--shadow-l);
+    padding-inline: 1rem;
+    padding-block: 1.2rem;
+  }
+
+  & .servicos-select {
+    appearance: base-select;
+    background-color: #f5f5f5;
+    width: 100%;
+    max-width: 100%;
+    box-shadow: var(--shadow-s);
+    border-radius: .5rem;
+    padding: .7rem .8rem;
+    border: none;
+
+    transition: .4s ease-in-out;
+
+    &::picker(select) {
+      appearance: base-select;
+      border: none;
+    }
+
+    &:hover, &:focus {
+      background-color: var(--quin-clr);
+    }
+
+    &::picker-icon {
+      color: #333;
+      transition: .4s rotate ease;
+      
+    }
+
+    &:open::picker-icon {
+      rotate: 180deg;
+    }
+  }
+
+  & #order-btn {
+    width: fit-content;
+    align-self: center;
+    border: none;
+    border-radius: 100px;
+    padding-block: .5rem;
+    padding-inline: 2rem;
+    color: #f5f5f5;
+    text-transform: uppercase;
+    font-weight: 700;
+    filter: drop-shadow(1px 1px 1px var(--tert-clr));
+    background-color: var(--quin-clr);
+    cursor: pointer;
+
+    &:hover {
+      background-color: var(--quat-clr);
+      scale: 1.07;
+      transition: .4s ease;
+    }
+  }
+
+}
+
+.input-container {
+  position: relative;
+  align-self: center;
+
+
+  & .input-field {
+    width: 100%;
+    max-width: 200px;
+    border: none;
+    box-shadow: var(--shadow-s);
+    border-radius: .5rem;
+    outline: none;
+    padding: .5rem .6rem;
+
+    transition: border-color .2s ease-in-out;
+
+    &:focus {
+      border-color: var(--quat-clr);
+    }
+
+    &:focus + .input-label, &:not(:placeholder-shown) + .input-label {
+      top: 0;
+      font-size: .7rem;
+      font-weight: bold;
+      color: #405952;
+      padding: 0 10px;
+      filter: drop-shadow(1px 1px 1px #dddddd);
+      opacity: .9;
+      
+      transition: .3s ease-in-out;
+    }
+  }
+
+  & .input-label {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    padding: 0 4px;
+    z-index: 2;
+  }
 }
