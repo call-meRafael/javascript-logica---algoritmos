@@ -3,19 +3,21 @@
 const frm = document.querySelector("#data-getter");
 const getUser = document.querySelector("#inUser");
 const getAparelho = document.querySelector("#inAparelho");
+const getOrder = document.querySelector('.servicos-select');
 const invalidState = document.querySelector('.invalid-state');
 const orderBtn = document.querySelector("#order-btn");
+const movingLabel = document.querySelector('#moving-label');
 
 const statusServico = ["Pendente", "Concluido"];
 let catalogoDeServicos;
 const ordensDeServico = [
   {
     id: "srvc_0",
-    nome: "Selecione um serviço",
+    servico: "Selecione um serviço",
   },
   {
     id: "srvc_1",
-    nome: "Limpeza Básica",
+    servico: "Limpeza Básica",
     cliente: "Rafael Araujo",
     aparelho: "Notebook Predator",
     valor: 120,
@@ -23,7 +25,7 @@ const ordensDeServico = [
   },
   {
     id: "srvc_2",
-    nome: "Limpeza Profunda",
+    servico: "Limpeza Profunda",
     cliente: "Milena Araujo",
     aparelho: 'Televisor LG 45" smart',
     valor: 215,
@@ -31,7 +33,7 @@ const ordensDeServico = [
   },
   {
     id: "srvc_3",
-    nome: "Troca de Analógico",
+    servico: "Troca de Analógico",
     cliente: "Gerson David",
     aparelho: "Controle PS5",
     valor: 150,
@@ -66,6 +68,16 @@ const adicionarServico = (event) => {
     getUser.focus();
 }
 
+const atualizarInterface = () => {
+  if (getOrder.dataset.carregado) return;
+  getOrder.innerHTML = ordensDeServico.map((order) => `
+  <option value="${order.id}" class="options-formater">${order.servico}</option>
+  `).join('');
+  getOrder.dataset.carregado = 'true';
+}
+// Ouvinte para o evento de seleção de serviços.
+getOrder.addEventListener('focus', atualizarInterface);
+
 frm.addEventListener('submit', adicionarServico);
 
 // Verifica se o nome do cliente é válido, impedindo a inserção de caracteres não numéricos.
@@ -73,11 +85,17 @@ getUser.addEventListener('input', () => {
     if (/\d/.test(getUser.value)) {
         getUser.classList.add('error-state');
         invalidState.classList.remove('no-display');
+        movingLabel.style.color = 'var(--white)';
+        movingLabel.style.filter = 'drop-shadow(2px 1px 1px var(--blk))';
+        movingLabel.style.fontWeight = '900';
         getUser.style.transition = '.4s ease';
         invalidState.style.transition = '.4s ease';
     } else {
         getUser.classList.remove('error-state');
         invalidState.classList.add('no-display');
+        movingLabel.style.color = 'var(--tert-clr)';
+        movingLabel.style.filter = 'none';
+        
         getUser.style.transition = '.4s ease';
         invalidState.style.transition = '.4s ease';
     }
@@ -101,6 +119,3 @@ const formatCurrency = Intl.NumberFormat("pt-BR", {
   maximumFractionDigits: 2,
 });
 
-frm.addEventListener("submit", (event) => {
-  event.preventDefault();
-});
